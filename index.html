@@ -23,104 +23,117 @@
   </head>
   <body>
     <nav class="nav">
-      <a href="/" class="nav__logo-link">
-        <img src="images/logo.svg" alt="Loopstudios" class="nav__logo" />
-      </a>
+      <div class="container nav__content">
+        <a href="/" class="nav__logo-link">
+          <img src="images/logo.svg" alt="Loopstudios" class="nav__logo" />
+        </a>
 
-      <div class="nav__toggle">
-        <span class="nav__burger nav__burger--first"></span>
-        <span class="nav__burger nav__burger--second"></span>
-        <span class="nav__burger nav__burger--third"></span>
+        <div class="nav__toggle">
+          <span class="nav__burger nav__burger--first"></span>
+          <span class="nav__burger nav__burger--second"></span>
+          <span class="nav__burger nav__burger--third"></span>
+        </div>
+
+        <ul class="nav__menu">
+          <li class="nav__item">About</li>
+          <li class="nav__item">Careers</li>
+          <li class="nav__item">Events</li>
+          <li class="nav__item">Products</li>
+          <li class="nav__item">Support</li>
+        </ul>
       </div>
-
-      <ul class="nav__menu">
-        <li class="nav__item">ABOUT</li>
-        <li class="nav__item">CAREERS</li>
-        <li class="nav__item">EVENTS</li>
-        <li class="nav__item">PRODUCTS</li>
-        <li class="nav__item">SUPPORT</li>
-      </ul>
     </nav>
 
     <div class="overlay"></div>
 
     <div class="hero">
-      <div class="hero__text">
-        <h1 class="heading-text heading-text--hero">
-          IMMERSIVE EXPERIENCES THAT DELIVER
-        </h1>
+      <div class="container">
+        <div class="hero__text">
+          <h1 class="heading-text heading-text--hero">
+            IMMERSIVE EXPERIENCES THAT DELIVER
+          </h1>
+        </div>
       </div>
     </div>
 
     <div class="content">
-      <div class="about">
-        <div class="about__image">
-          <img
-            src="images/mobile/image-interactive.jpg"
-            alt="about"
-            class="about__image"
-          />
-        </div>
-
-        <div class="about__text">
-          <h1 class="heading-text">THE LEADER IN INTERACTIVE VR</h1>
-          <p class="body-text">
-            Founded in 2011, Loopstudios has been producing world-class virtual
-            reality projects for some of the best companies around the globe.
-            Our award-winning creations have transformed businesses through
-            digital experiences that bind to their brand.
-          </p>
-        </div>
-      </div>
-
-      <div class="creations">
-        <h1 class="heading-text">OUR CREATIONS</h1>
-
-        <div class="creations__cards-container">
-          <!-- <div class="creations__card">
+      <div class="container">
+        <div class="about">
+          <div class="about__image-container">
             <img
-              src="images/mobile/image-deep-earth.jpg"
-              alt="deep earth"
-              class="creations__image"
+              src="images/mobile/image-interactive.jpg"
+              alt="about"
+              class="about__image about__image--mobile"
             />
-            <h2 class="creations__name heading-text">DEEP EARTH</h2>
-          </div> -->
+            <img
+              src="images/desktop/image-interactive.jpg"
+              alt="about"
+              class="about__image about__image--desktop"
+            />
+          </div>
+
+          <div class="about__text">
+            <h1 class="heading-text">THE LEADER IN INTERACTIVE VR</h1>
+            <p class="body-text">
+              Founded in 2011, Loopstudios has been producing world-class
+              virtual reality projects for some of the best companies around the
+              globe. Our award-winning creations have transformed businesses
+              through digital experiences that bind to their brand.
+            </p>
+          </div>
         </div>
 
-        <button class="button">SEE ALL</button>
+        <div class="creations">
+          <h1 class="heading-text">OUR CREATIONS</h1>
+
+          <div class="flex-wrap creations__cards-container">
+            <!-- <div class="creations__card">
+              <img
+                src="images/mobile/image-deep-earth.jpg"
+                alt="deep earth"
+                class="creations__image"
+              />
+              <h2 class="creations__name heading-text">DEEP EARTH</h2>
+            </div> -->
+          </div>
+
+          <button class="button">SEE ALL</button>
+        </div>
       </div>
     </div>
 
     <footer class="footer">
-      <div class="footer__column">
-        <img src="images/logo.svg" alt="Loopstudios" class="footer__logo" />
+      <div class="footer__inner container">
+        <div class="footer__column footer__column--left">
+          <img src="images/logo.svg" alt="Loopstudios" class="footer__logo" />
 
-        <ul class="footer__links">
-          <li class="footer__link">About</li>
-          <li class="footer__link">Careers</li>
-          <li class="footer__link">Events</li>
-          <li class="footer__link">Products</li>
-          <li class="footer__link">Support</li>
-        </ul>
-      </div>
-
-      <div class="footer__column">
-        <div class="flex">
-          <a href="#" class="footer__icon-link">
-            <i class="footer__icon fab fa-facebook-square"></i>
-          </a>
-          <a href="#" class="footer__icon-link">
-            <i class="footer__icon fab fa-twitter"></i>
-          </a>
-          <a href="#" class="footer__icon-link">
-            <i class="footer__icon fab fa-pinterest"></i>
-          </a>
-          <a href="#" class="footer__icon-link">
-            <i class="footer__icon fab fa-instagram"></i>
-          </a>
+          <ul class="footer__links">
+            <li class="footer__link">About</li>
+            <li class="footer__link">Careers</li>
+            <li class="footer__link">Events</li>
+            <li class="footer__link">Products</li>
+            <li class="footer__link">Support</li>
+          </ul>
         </div>
 
-        <p class="body-text">© 2021 Loopstudios. All rights reserved.</p>
+        <div class="footer__column footer__column--right">
+          <div class="footer__socmed">
+            <a href="#" class="footer__icon-link">
+              <i class="footer__icon fab fa-facebook-square"></i>
+            </a>
+            <a href="#" class="footer__icon-link">
+              <i class="footer__icon fab fa-twitter"></i>
+            </a>
+            <a href="#" class="footer__icon-link">
+              <i class="footer__icon fab fa-pinterest"></i>
+            </a>
+            <a href="#" class="footer__icon-link">
+              <i class="footer__icon fab fa-instagram"></i>
+            </a>
+          </div>
+
+          <p class="body-text">© 2021 Loopstudios. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 

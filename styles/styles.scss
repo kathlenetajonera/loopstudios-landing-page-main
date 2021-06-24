@@ -21,15 +21,27 @@ body {
   box-sizing: border-box;
 }
 
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container {
+  width: 100%;
+  max-width: 1055px;
+  margin: 0 auto;
+}
+
 .nav {
   position: absolute;
   width: 100%;
   padding: 3rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   z-index: 1;
   $nav: &;
+
+  @include media-query(tablet) {
+    padding: 3rem 2rem;
+  }
 
   &--active {
     #{ $nav }__burger--first {
@@ -53,6 +65,12 @@ body {
     }
   }
 
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__logo-link {
     width: 50%;
     max-width: 192px;
@@ -65,6 +83,10 @@ body {
 
   &__toggle {
     cursor: pointer;
+
+    @include media-query(desktop) {
+      display: none;
+    }
   }
 
   &__burger {
@@ -98,6 +120,14 @@ body {
     color: white;
     transform: translateY(-50%);
     transition: 0.5s ease;
+
+    @include media-query(desktop) {
+      position: static;
+      transform: none;
+      transition: none;
+      width: auto;
+      display: flex;
+    }
   }
 
   &__item {
@@ -105,6 +135,32 @@ body {
     font-size: 1.5rem;
     margin: 1.5rem 0;
     cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+
+    &:hover {
+      &::after {
+        content: "";
+        width: 1.3rem;
+        height: 2px;
+        background-color: $white;
+        display: block;
+        position: absolute;
+        bottom: -0.5rem;
+        border-radius: 2rem;
+      }
+    }
+
+    @include media-query(desktop) {
+      font-size: 0.9rem;
+      text-transform: capitalize;
+      margin: 0 1rem;
+
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
   }
 }
 
@@ -122,12 +178,18 @@ body {
 
 .heading-text {
   font-family: $heading-font;
+  font-weight: 300;
   margin: 0;
 
   &--hero {
     color: $white;
     font-size: 2.5rem;
     line-height: 3rem;
+
+    @include media-query(tablet) {
+      font-size: 3.5rem;
+      line-height: 4rem;
+    }
   }
 }
 
@@ -142,48 +204,132 @@ body {
   min-height: 100vh;
   background-image: url("/images/mobile/image-hero.jpg");
   background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 0 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  @include media-query(tablet) {
+    padding: 0 2rem;
+  }
+
+  @include media-query(desktop) {
+    background-image: url("/images/desktop/image-hero.jpg");
+  }
 
   &__text {
     border: 2px solid $white;
     padding: 1.5rem;
+    width: 100%;
+    max-width: 500px;
   }
 }
 
 .content {
   padding: 8rem 1.5rem;
+
+  @include media-query(tablet) {
+    padding: 8rem 2rem;
+  }
 }
 
 .about {
+  display: grid;
   margin-bottom: 2rem;
+  position: relative;
+
+  @include media-query(tablet) {
+    margin-bottom: 6rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-query(desktop) {
+    align-items: flex-end;
+    grid-template-columns: 2fr 1fr;
+  }
 
   &__image {
-    max-width: 100%;
+    width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+
+    &--mobile {
+      @include media-query(tablet) {
+        display: none;
+      }
+    }
+
+    &--desktop {
+      display: none;
+
+      @include media-query(tablet) {
+        display: block;
+      }
+    }
   }
 
   &__text {
     padding: 3rem 1rem;
     text-align: center;
+    // flex: 2 1 350px;
+    background-color: $white;
+
+    @include media-query(tablet) {
+      text-align: left;
+    }
+
+    @include media-query(desktop) {
+      padding: 3rem 3rem 0 3rem;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 50%;
+    }
   }
 }
 
 .creations {
   text-align: center;
+  position: relative;
+  $creations: &;
+
+  @include media-query(tablet) {
+    text-align: left;
+  }
 
   &__cards-container {
-    margin: 4rem 0 3rem -1.8rem;
+    margin: 3rem 0 3rem -1.8rem;
   }
 
   &__card {
     position: relative;
     margin: 1.8rem 0 0 1.8rem;
+    flex: 1 1 230px;
+    cursor: pointer;
+
+    &:hover {
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $white;
+        opacity: 0.75;
+        z-index: 0;
+      }
+
+      #{ $creations }__name {
+        color: $black;
+        z-index: 9;
+      }
+    }
   }
 
   &__image {
-    max-width: 100%;
+    width: 100%;
     display: block;
   }
 
@@ -207,31 +353,114 @@ body {
   font-size: 1rem;
   letter-spacing: 2px;
   padding: 0.5rem 2.5rem;
+  transition: 0.2s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+
+  @include media-query(tablet) {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 
 .footer {
   background-color: $black;
   padding: 4rem 2rem;
 
+  @include media-query(tablet) {
+    padding: 2rem;
+
+    .body-text {
+      font-size: 0.8rem;
+      line-height: 1rem;
+      margin: 0;
+    }
+  }
+
+  &__inner {
+    @include media-query(tablet) {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      height: 60px;
+    }
+  }
+
   &__column {
     text-align: center;
+
+    @include media-query(tablet) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+
+      &--left {
+        align-items: flex-start;
+      }
+
+      &--right {
+        align-items: flex-end;
+      }
+    }
   }
 
   &__links {
     list-style: none;
     padding: 0;
     margin: 2rem 0 3rem;
+
+    @include media-query(tablet) {
+      display: flex;
+      margin: 0;
+    }
   }
 
   &__link {
     font-family: $body-font;
     color: $white;
     margin: 1rem 0;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      color: $white;
+
+      &::after {
+        content: "";
+        width: 1.3rem;
+        height: 2px;
+        background-color: $white;
+        display: block;
+        position: absolute;
+        left: 50%;
+        bottom: -0.5rem;
+        transform: translateX(-50%);
+        border-radius: 2rem;
+      }
+    }
+
+    @include media-query(tablet) {
+      margin: 0 0.8rem 0 0;
+      color: $dark-gray;
+      font-size: 0.8rem;
+    }
   }
 
   &__icon-link {
     display: inline-block;
     margin: 0 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      border-bottom: 2px solid $white;
+    }
   }
 
   &__icon {
