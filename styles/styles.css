@@ -95,6 +95,19 @@ body {
 }
 
 .nav__toggle {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   cursor: pointer;
 }
 
@@ -229,6 +242,7 @@ body {
 }
 
 .hero {
+  height: 100vh;
   min-height: 100vh;
   background-image: url("/images/mobile/image-hero.jpg");
   background-size: cover;
@@ -304,6 +318,7 @@ body {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -ms-grid-row: 1;
 }
 
 @media (min-width: 48rem) {
@@ -319,6 +334,7 @@ body {
 @media (min-width: 48rem) {
   .about__image--desktop {
     display: block;
+    -ms-grid-column: 1;
   }
 }
 
@@ -326,11 +342,14 @@ body {
   padding: 3rem 1rem;
   text-align: center;
   background-color: white;
+  -ms-grid-row: 2;
 }
 
 @media (min-width: 48rem) {
   .about__text {
     text-align: left;
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
   }
 }
 
