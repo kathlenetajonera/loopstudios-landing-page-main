@@ -1,9 +1,9 @@
 const App = function () {};
 
 let windowWidth = window.innerWidth;
+let resizeTimer;
+
 const body = document.body;
-const nav = document.querySelector(".nav");
-const navToggle = document.querySelector(".nav__toggle");
 const creationsContainer = document.querySelector(
     ".creations__cards-container"
 );
@@ -48,43 +48,38 @@ App.prototype.grid = function () {
 };
 
 App.prototype.listeners = function () {
-    navToggle.addEventListener("click", function () {
-        nav.classList.toggle("nav--active");
-        bodyLock();
-    });
+    changeImageSource(windowWidth < 768);
 
     window.addEventListener("resize", function () {
         if (windowWidth !== window.innerWidth) {
             windowWidth = window.innerWidth;
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                window.location.reload();
+            }, 250);
 
             if (windowWidth >= 1024) {
                 nav.classList.remove("nav--active");
                 body.classList.remove("scroll-lock");
             }
-
-            changeImageSource(windowWidth < 768);
         }
     });
 
-    function bodyLock() {
-        const isActive = nav.classList.contains("nav--active");
-
-        isActive
-            ? body.classList.add("scroll-lock")
-            : body.classList.remove("scroll-lock");
-    }
-
     function changeImageSource(isMobile) {
+        const hero = document.querySelector(".hero__image img");
         const cards = document.querySelectorAll(".creations__image");
 
-        cards.forEach((card) => {
-            card.setAttribute(
+        const changeSrc = (item) => {
+            item.setAttribute(
                 "src",
                 isMobile
-                    ? card.getAttribute("data-mobile")
-                    : card.getAttribute("data-desktop")
+                    ? item.getAttribute("data-mobile")
+                    : item.getAttribute("data-desktop")
             );
-        });
+        };
+
+        changeSrc(hero);
+        cards.forEach((card) => changeSrc(card));
     }
 };
 

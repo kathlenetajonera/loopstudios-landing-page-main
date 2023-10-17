@@ -56,13 +56,13 @@ body {
             transform: rotate(-45deg);
         }
 
-        #{ $nav }__menu {
-            left: 1.5rem;
-        }
+        // #{ $nav }__menu {
+        //     left: 1.5rem;
+        // }
 
-        + .overlay {
-            opacity: 1;
-        }
+        // + .overlay {
+        //     opacity: 1;
+        // }
     }
 
     &__content {
@@ -74,6 +74,7 @@ body {
     &__logo-link {
         width: 50%;
         max-width: 192px;
+        z-index: 1;
     }
 
     &__logo {
@@ -86,6 +87,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        z-index: 1;
         cursor: pointer;
 
         @include media-query(desktop) {
@@ -115,22 +117,28 @@ body {
     }
 
     &__menu {
-        list-style: none;
-        padding: 0;
-        width: 100%;
         position: fixed;
-        left: -100%;
-        top: 50%;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
         color: white;
-        transform: translateY(-50%);
-        transition: 0.5s ease;
+        list-style: none;
+        padding: 6rem 1.5rem;
+        margin: 0;
+        visibility: hidden;
 
         @include media-query(desktop) {
             position: static;
             transform: none;
             transition: none;
             width: auto;
-            display: flex;
+            flex-direction: row;
+            padding: 0;
+            visibility: visible;
         }
     }
 
@@ -141,6 +149,7 @@ body {
         cursor: pointer;
         text-transform: uppercase;
         position: relative;
+        visibility: hidden;
 
         &::after {
             content: "";
@@ -515,10 +524,23 @@ body {
         display: inline-block;
         margin: 0 0.5rem;
         padding-bottom: 0.3rem;
-        border-bottom: 2px solid transparent;
+
+        &::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: $white;
+            margin-top: 0.3rem;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
 
         &:hover {
-            border-bottom: 2px solid $white;
+            &::after {
+                transform: scaleX(1);
+            }
         }
     }
 
@@ -534,4 +556,8 @@ body {
     font-family: $body-font;
     font-size: 12px;
     color: $dark-gray;
+
+    a {
+        color: $dark-gray;
+    }
 }

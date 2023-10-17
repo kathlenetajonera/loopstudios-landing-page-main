@@ -2,6 +2,11 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const Animation = function () {};
 
+const nav = document.querySelector(".nav");
+const navToggle = document.querySelector(".nav__toggle");
+const menu = document.querySelector(".nav__menu");
+const menuItems = document.querySelectorAll(".nav__item");
+
 Animation.prototype.init = function () {
     if (windowWidth >= 768) {
         ScrollSmoother.create({
@@ -9,6 +14,12 @@ Animation.prototype.init = function () {
             effects: true,
             normalizeScroll: true,
         });
+    }
+
+    if (windowWidth < 1024) {
+        Animation.prototype.mobileMenu();
+    } else {
+        Animation.prototype.desktopMenu();
     }
 
     Animation.prototype.hero();
@@ -190,6 +201,42 @@ Animation.prototype.transitions = function () {
             });
         }
     }
+};
+
+Animation.prototype.mobileMenu = function () {
+    gsap.set(menuItems, { x: 30 });
+
+    const tl = gsap.timeline({ paused: true });
+    tl.to(menu, {
+        autoAlpha: 1,
+        duration: 0.2,
+        backgroundColor: "#000",
+    }).to(menuItems, {
+        x: 0,
+        autoAlpha: 1,
+        stagger: 0.05,
+    });
+
+    navToggle.addEventListener("click", function () {
+        if (nav.classList.contains("nav--active")) {
+            tl.reverse();
+            body.classList.remove("scroll-lock");
+        } else {
+            tl.play();
+            body.classList.add("scroll-lock");
+        }
+
+        nav.classList.toggle("nav--active");
+    });
+};
+
+Animation.prototype.desktopMenu = function () {
+    gsap.to(menuItems, {
+        x: 0,
+        autoAlpha: 1,
+        stagger: 0.05,
+        delay: 0.2,
+    });
 };
 
 document.addEventListener("DOMContentLoaded", function () {
